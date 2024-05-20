@@ -20,4 +20,7 @@ with DAG(
         sql="INSERT INTO students (name) VALUES ('Alex Jones');",
     )
 
-create_new_table >> insert_data
+first_task = EmptyOperator(task_id='start')
+last_task = EmptyOperator(task_id='end')
+
+first_task >> create_new_table >> insert_data >> last_task
